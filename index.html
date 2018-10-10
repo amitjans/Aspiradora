@@ -1,55 +1,44 @@
 <html lang="en">
-    <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Aspiradora</title>
-        <style>
-            table {
-                border: 3px;
-            }
-            td {
-                min-width: 200px;
-                min-height: 200px;
-            }
-        </style>
-    </head>
-    <body>
-        <table>
-            <tr>
-                <td id="0">0</td>
-                <td id="1">1</td>
-                <td id="2">2</td>
-            </tr>
-            <tr>
-                <td id="3">3</td>
-                <td id="4">4</td>
-                <td id="5">5</td>
-            </tr>
-            <tr>
-                <td id="6">6</td>
-                <td id="7">7</td>
-                <td id="8">8</td>
-            </tr>
-        </table>
 
-        <div>
-            <button onclick="Basura()">Aleatorio</button>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aspiradora</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
 
-    </body>
-    <script src="js/jquery.min.js"></script>
-    <script>
-        function Basura(){
-            for (let i = 0; i < 8; i++) {
-                $("#" + i).empty();
-            }
-            for (let i = 0; i < 4; i++) {
-                var aux = Math.floor(Math.random() * 10);
-                $("#" + aux).empty();
-                $("#" + aux).append('<img src="img/basura.png" width="200px" alt="">');
-            }
-            $("#7").append('<img src="img/aspiradora.png" width="200px" height="200px" alt="">');
-        }
-    </script>
+<body>
+    <table>
+        <tr class="vacuum">
+            <td id="10"><img id="asp" src="img/aspiradora.png" alt=""></td>
+            <td id="11"></td>
+            <td id="12"></td>
+        </tr>
+        <tr class="area">
+            <td id="00">
+                <div class="space clean" onclick="CambioEstado('00')"></div>
+            </td>
+            <td id="01">
+                <div class="space dirt" onclick="CambioEstado('01')"></div>
+            </td>
+            <td id="02">
+                <div class="space dirt" onclick="CambioEstado('02')"></div>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+
+    <div>
+        <button onclick="Basura()">Aleatorio</button>
+        <button onclick="Izquierda()">Izquierda</button>
+        <button onclick="Derecha()">Derecha</button>
+        <button onclick="LimpiarManual()">Limpiar</button>
+    </div>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/vaccum.js"></script>
+
 </html>

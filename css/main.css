@@ -1,0 +1,31 @@
+table,
+td,
+tr {
+    border: 1px solid black;
+}
+
+td {
+    min-width: 100px;
+    min-height: 100px;
+    align-items: center;
+}
+
+.space {
+    min-width: 50px;
+    min-height: 25px;
+}
+
+.clean {
+    background-color: white;
+    background: white;
+}
+
+.dirt {
+    background-color: brown;
+    background: brown;
+}
+
+img {
+    max-width: 20px;
+    max-height: 20px;
+}
