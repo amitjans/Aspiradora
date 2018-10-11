@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aspiradora</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td id="20">
+                <div class="space one"></div>
+                <div class="space garbage clean" onclick="Estado(this)"></div>
+            </td>
+            <td id="21">
+                <div class="space one"></div>
+                <div class="space garbage dirt" onclick="Estado(this)"></div>
+            </td>
+            <td id="22">
+                <div class="space one"></div>
+                <div class="space garbage clean" onclick="Estado(this)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td id="10">
+                <div class="space one"></div>
+                <div class="space garbage clean" onclick="Estado(this)"></div>
+            </td>
+            <td id="11">
+                <div class="space one"></div>
+                <div class="space garbage dirt" onclick="Estado(this)"></div>
+            </td>
+            <td id="12">
+                <div class="space one"></div>
+                <div class="space garbage clean" onclick="Estado(this)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td id="00">
+                <div class="space one"><img id="asp" src="img/aspiradora.png" alt=""></div>
+                <div class="space garbage clean" onclick="Estado(this)"></div>
+            </td>
+            <td id="01">
+                <div class="space one"></div>
+                <div class="space garbage dirt" onclick="Estado(this)"></div>
+            </td>
+            <td id="02">
+                <div class="space one"></div>
+                <div class="space garbage clean" onclick="Estado(this)"></div>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+
+    <div>
+        <button onclick="Limpiar()">Limpiar</button>
+    </div>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/reflexvaccum.js"></script>
+
+</html>
