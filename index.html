@@ -9,32 +9,30 @@
 </head>
 
 <body>
-    <table>
-        <tr class="vacuum">
-            <td id="10"><img id="asp" src="img/aspiradora.png" alt=""></td>
-            <td id="11"></td>
-            <td id="12"></td>
-        </tr>
-        <tr class="area">
-            <td id="00">
-                <div class="space clean" onclick="CambioEstado('00')"></div>
-            </td>
-            <td id="01">
-                <div class="space dirt" onclick="CambioEstado('01')"></div>
-            </td>
-            <td id="02">
-                <div class="space dirt" onclick="CambioEstado('02')"></div>
-            </td>
-        </tr>
-    </table>
+
+    <div>
+        <h3>Ambiente</h3>
+        <input type="number" id="x" value="1">
+        X
+        <input type="number" id="y" value="1">
+        <button type="button" onclick="Generar()">Generar</button>
+    </div>
+
+    <div>
+        <h3>Representaci&oacute;n</h3>
+        <table>
+        </table>
+    </div>
+
+    <div>
+        <h3>Puntos</h3>
+        <p id="puntos"></p>
+    </div>
 
     <br />
 
     <div>
-        <button onclick="Basura()">Aleatorio</button>
-        <button onclick="Izquierda()">Izquierda</button>
-        <button onclick="Derecha()">Derecha</button>
-        <button onclick="LimpiarManual()">Limpiar</button>
+        <button onclick="Limpiar()">Limpiar</button>
     </div>
 
 </body>

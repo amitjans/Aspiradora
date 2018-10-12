@@ -1,30 +1,45 @@
-var p = 0;
-var aux = 2;
+var puntos = 0;
 
-function Basura(){
-    $(".vacuum").empty();
-    $(".area").empty();
-    p = 0;
-    aux = Math.floor(Math.random() * 10);
-    while (aux == 0) {
-        aux = Math.floor(Math.random() * 10);
+function Generar() {
+    var x = $("#x").val();
+    var y = $("#y").val();
+    $("table").empty();
+    for (var i = y - 1; i >= 0; i--) {
+        var temp = '<tr>';
+        for (var j = 0; j < x; j++) {
+            temp += '<td id="' + j + 'x' + i + '"><div class="space one"></div><div class="space garbage ' + (ParOImpar() ? "clean" : "dirt") + '" onclick="Estado(this)"></div></td>';
+        }
+        temp = temp + '</tr>';
+        $("table").append(temp);
     }
-    for (let i = 0; i <= aux; i++) {
-        $(".vacuum").append('<td id="1' + i + '"></td>');
+    $("#0x0>.one").append('<img id="asp" src="img/aspiradora.png" alt=""></img>');
+    $("#puntos").empty();
+    puntos = 0;
+    $("#puntos").append(puntos);
+}
+
+function ParOImpar() {
+    var temp = Math.floor(Math.random() * 10);
+    return temp % 2 == 0;
+}
+
+function Estado(temp) {
+    if ($(temp).hasClass("dirt")) {
+        $(temp).removeClass("dirt");
+        $(temp).addClass("clean");
+    } else {
+        $(temp).removeClass("clean");
+        $(temp).addClass("dirt");
     }
-    for (let i = 0; i <= aux; i++) {
-        var temp = Math.floor(Math.random() * 10);
-        if(temp % 2 == 0){
-            $(".area").append('<td id="0' + i + '"><div class="space clean" onclick="CambioEstado(\'0' + i + '\')"></div></td>');
-        } else {
-            $(".area").append('<td id="0' + i + '"><div class="space dirt" onclick="CambioEstado(\'0' + i + '\')"></div></td>');
-        }   
-    }
-    $("#10").append('<img id="asp" src="img/aspiradora.png" alt="">');
+}
+
+function ActualizarPuntos(p) {
+    $("#puntos").empty();
+    $("#puntos").append(p);
 }
 
 function CambioEstado(id) {
-    if($("#" + id).children().hasClass("dirt")){
+    if ($("#" + id).children().hasClass("dirt")) {
         $("#" + id).children().removeClass("dirt");
         $("#" + id).children().addClass("clean");
     } else {
@@ -33,35 +48,63 @@ function CambioEstado(id) {
     }
 }
 
-function Limpiar(id) {
-    if($("#" + id).children().hasClass("dirt")){
-        $("#" + id).children().removeClass("dirt");
-        $("#" + id).children().addClass("clean");
-    }
+var sentidoh = 1;
+
+function Limpiar() {
+    LimpiarEspacio($("#asp").parent().parent());
+    var tiempo = setInterval(function () {
+        var pos = $("#asp").parent().parent().prop("id").split('x');
+        var tx = pos[0] * 1;
+        console.log(tx);
+        var ty = pos[1] * 1;
+        console.log(ty);
+        if(!!document.getElementById(tx + "x" + ty)){
+            LimpiarEspacio($("#" + tx + "x"  + ty));
+        }
+        if(!!document.getElementById((tx + sentidoh) + "x" + ty)){
+            $("#" + (tx + sentidoh) + "x" + ty + ">.one").append($("#asp"));
+        } else if(!!document.getElementById(tx + "x" + (ty + 1))){
+            $("#" + tx + "x" + (ty + 1) + ">.one").append($("#asp"));
+            if(sentidoh == 1){
+                sentidoh = -1;
+            } else {
+                sentidoh = 1;
+            }
+        } else {
+            clearInterval(tiempo);
+            Inicio();
+        }
+    }, 500)
 }
 
-function LimpiarManual() {
-    var id = $("#asp").parent().prop("id");
-    if($("#0" + id[1]).children().hasClass("dirt")){
-        $("#0" + id[1]).children().removeClass("dirt");
-        $("#0" + id[1]).children().addClass("clean");
-    }
+function Inicio(){
+    var pos = $("#asp").parent().parent().prop("id").split('x');
+        var tx = pos[0] * 1;
+        console.log(tx);
+        var ty = pos[1] * 1;
+        console.log(ty);
+        var t = setInterval(function () {
+            if(!!document.getElementById(tx + "x" + ty)){
+                LimpiarEspacio($("#" + tx + "x"  + ty));
+            }
+            if(tx > 0){
+                tx--;
+                $("#" + tx + "x" + ty + ">.one").append($("#asp"));
+            } else {
+                ty--;
+                $("#" + tx + "x" + ty + ">.one").append($("#asp"));
+            }
+            if(tx == 0 && ty == 0){
+                clearInterval(t);
+            }
+        }, 500)
 }
 
-function Derecha() {
-    if (p + 1 <= aux) {
-        $("#1" + p).empty();
-        p++;
-        $("#1" + p).append('<img id="asp" src="img/aspiradora.png" alt="">');
-        setTimeout(Limpiar('0' + p), 10000);
-    }  
-}
-
-function Izquierda() {
-    if (p - 1 >= 0) {
-        $("#1" + p).empty();
-        p--;
-        $("#1" + p).append('<img id="asp" src="img/aspiradora.png" alt="">');
-        setTimeout(Limpiar('0' + p), 10000);
+function LimpiarEspacio(id) {
+    if ($(id).children(".garbage").hasClass("dirt")) {
+        $(id).children(".garbage").removeClass("dirt");
+        $(id).children(".garbage").addClass("clean");
+        puntos++;
+        ActualizarPuntos(puntos);
     }
 }
