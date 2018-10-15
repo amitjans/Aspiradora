@@ -1,4 +1,5 @@
 var puntos = 0;
+var sentidoh = 1;
 
 function Generar() {
     var x = $("#x").val();
@@ -15,7 +16,8 @@ function Generar() {
     $("#0x0>.one").append('<img id="asp" src="img/aspiradora.png" alt=""></img>');
     $("#puntos").empty();
     puntos = 0;
-    $("#puntos").append(puntos);
+    sentidoh = 1;
+    ActualizarPuntos(0);
 }
 
 function ParOImpar() {
@@ -48,9 +50,9 @@ function CambioEstado(id) {
     }
 }
 
-var sentidoh = 1;
-
 function Limpiar() {
+    $("#l").fadeOut(500);
+    ActualizarPuntos(0);
     LimpiarEspacio($("#asp").parent().parent());
     var tiempo = setInterval(function () {
         var pos = $("#asp").parent().parent().prop("id").split('x');
@@ -96,6 +98,7 @@ function Inicio(){
             }
             if(tx == 0 && ty == 0){
                 clearInterval(t);
+                $("#l").fadeIn(500);
             }
         }, 500)
 }
