@@ -18,6 +18,7 @@ function Generar() {
     puntos = 0;
     sentidoh = 1;
     ActualizarPuntos(0);
+    $("#l").fadeIn(0);
 }
 
 function ParOImpar() {
